@@ -1,6 +1,6 @@
 "use strict";
 const visit = require(`unist-util-visit`);
-const bibtexParse = require(`bibtex-parse-js`);
+const bibtexParse = require(`bibtex-parse`);
 const fs = require(`fs`)
 
 module.exports = ({ markdownAST, markdownNode, getNode }, { components }) => {
@@ -9,6 +9,7 @@ module.exports = ({ markdownAST, markdownNode, getNode }, { components }) => {
 
   // let's read the markdown
   const bibtex_f = getNode(markdownNode.parent).dir + '/bibliography.bib';
+  console.log(bibtex_f)
   let bibtex = '';
   if (fs.existsSync(bibtex_f)) {
     bibtex = fs.readFileSync(bibtex_f, `utf-8`);
